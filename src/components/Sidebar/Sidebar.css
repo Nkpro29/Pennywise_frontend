@@ -1,0 +1,71 @@
+/* Sidebar container */
+.sidebar {
+    background-color: #212121;
+    width: 240px;
+    height: 100vh;
+    padding: 20px;
+    color: #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+  }
+  
+  /* Profile section at the top */
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .profile-pic {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .profile-name {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 18px;
+  }
+  
+  /* Menu section */
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #c3c3c3;
+  }
+  
+  .menu-item:hover {
+    background-color: #333333;
+    border-radius: 8px;
+    padding-left: 10px;
+  }
+  
+  .menu-icon {
+    margin-right: 15px;
+    font-size: 20px;
+    color: #6a6a6a;
+  }
+  
+  .menu-item span {
+    font-size: 16px;
+  }
+  
+  /* Active menu item */
+  .menu-item.active {
+    color: #00cc99;
+  }
+  
+  .menu-item.active .menu-icon {
+    color: #00cc99;
+  }
