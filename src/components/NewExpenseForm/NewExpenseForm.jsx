@@ -16,6 +16,9 @@ import Grid from "@mui/material/Grid2";
 import { styled } from "@mui/material";
 
 import { useState } from "react";
+import AppTheme from "../../theme/AppTheme";
+import { CssBaseline } from "@mui/material";
+import { useRef } from "react";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -29,7 +32,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const [formData, setFormData] = useState({
     subject: "",
     merchant: "",
@@ -41,6 +44,12 @@ const ExpenseForm = () => {
     employee: "",
     addToReport: false,
   });
+
+  const fileInputRef = useRef(null);
+
+  const handleFileUploadClick = () => {
+    fileInputRef.current.click(); // Programmatically click the file input
+  };
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -57,9 +66,11 @@ const ExpenseForm = () => {
   };
 
   return (
+    <AppTheme {...props}>
+      <CssBaseline enableColorScheme />
     <Container
       maxWidth="sm"
-      sx={{ bgcolor: "#1a1a1a", color: "#fff", p: 4, borderRadius: 2 }}
+      sx={{ bgcolor: "#1a1a1a", color: "#fff", p: 4, borderRadius: 2, position:"relative", top:"40%" }}
     >
       <Typography variant="h4" gutterBottom sx={{ textAlign: "center" }}>
         New Expense
@@ -140,22 +151,7 @@ const ExpenseForm = () => {
               }}
             />
           </Grid>
-
-          {/* Reimbursable Checkbox */}
-          <Grid size={12}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={formData.reimbursable}
-                  onChange={handleChange}
-                  name="reimbursable"
-                  sx={{ color: "#fff" }}
-                />
-              }
-              label="Reimbursable"
-              sx={{ color: "#888" }}
-            />
-          </Grid>
+         
 
           {/* Category Dropdown */}
           <Grid size={12}>
@@ -220,9 +216,11 @@ const ExpenseForm = () => {
                 textAlign: "center",
                 color: "#888",
               }}
+              onClick={handleFileUploadClick}
             >
               <VisuallyHiddenInput
                 type="file"
+                ref={fileInputRef}
                 onChange={(event) => console.log(event.target.files)}
                 multiple
               />
@@ -250,6 +248,7 @@ const ExpenseForm = () => {
         </Grid>
       </form>
     </Container>
+    </AppTheme>
   );
 };
 
