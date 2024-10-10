@@ -1,8 +1,16 @@
 import { Typography, Button, Box, Container } from "@mui/material";
 import { FaGoogle } from "react-icons/fa";
 import Grid from "@mui/material/Grid2";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
+
+  const navigate = useNavigate();
+
+  function openSign(){
+    navigate("/login");
+  }
+
   return (
     <Box
       sx={{
@@ -42,6 +50,7 @@ export default function App() {
                 backgroundColor: "#4CAF50",
                 "&:hover": { backgroundColor: "#45a045" },
               }}
+              onClick={openSign}
             >
               SignIn
             </Button>

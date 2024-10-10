@@ -8,6 +8,7 @@ import LandingPage from "./screens/LandingPage/LandingPage";
 import { useLocation } from "react-router-dom";
 import Login from "./components/Auth/Login/Login";
 import SignUp from "./components/Auth/Signup/Signup";
+import Expenses from "./screens/Expenses/Expenses";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={<Home />} />
+            <Route path="/expenses" element={<Expenses />} />
             <Route path="/newexpense" element={<ExpenseForm />} />
           </Routes>
         </div>
