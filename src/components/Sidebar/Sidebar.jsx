@@ -11,11 +11,10 @@ import {
   FaHome,
   FaWallet,
   FaPlane,
-  FaCheckSquare,
   FaCog,
   FaPhone,
 } from "react-icons/fa";
-
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const drawerWidth = 240;
 
@@ -48,28 +47,27 @@ const Sidebar = () => {
         </Typography>
       </div>
       <List>
-        {["Home", "Expenses", "Trips", "Settings", "Support"].map(
-          (text, index) => (
-            <ListItem
-              button
-              key={text}
-              style={{ height: "80px", padding: "20px", border:"grey" }}
-            >
-              <ListItemIcon sx={{ color: "#8be9fd" }}>
-                {index === 0 && <FaHome />}
-                {index === 1 && <FaWallet />}
-                {index === 2 && <FaPlane />}
-                {index === 3 && <FaCheckSquare />}
-                {index === 4 && <FaCog />}
-                {index === 5 && <FaPhone />}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                sx={{ fontSize: "40px", fontWeight: 700 }}
-              />
-            </ListItem>
-          )
-        )}
+        {[
+          { text: "Home", icon: <FaHome />, path: "/dashboard" },
+          { text: "Expenses", icon: <FaWallet />, path: "/expenses" },
+          { text: "Trips", icon: <FaPlane />, path: "/trips" },
+          { text: "Settings", icon: <FaCog />, path: "/settings" },
+          { text: "Support", icon: <FaPhone />, path: "/support" },
+        ].map(({ text, icon, path }) => (
+          <ListItem
+            button
+            key={text}
+            style={{ height: "80px", padding: "20px", border: "grey" }}
+            component={Link}
+            to={path} // Link to the respective page
+          >
+            <ListItemIcon sx={{ color: "#8be9fd" }}>{icon}</ListItemIcon>
+            <ListItemText
+              primary={text}
+              sx={{ fontSize: "40px", fontWeight: 700 }}
+            />
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   );

@@ -22,9 +22,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
-function createData(id, details, paid_to, amount, report, status) {
+function createData(details, paid_to, amount, report, status) {
   return {
-    id,
     details,
     paid_to,
     amount,
@@ -34,19 +33,23 @@ function createData(id, details, paid_to, amount, report, status) {
 }
 
 const rows = [
-  createData(1, "Cupcake", 305, 3.7, 67, 4.3),
-  createData(2, "Donut", 452, 25.0, 51, 4.9),
-  createData(3, "Eclair", 262, 16.0, 24, 6.0),
-  createData(4, "Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData(5, "Gingerbread", 356, 16.0, 49, 3.9),
-  createData(6, "Honeycomb", 408, 3.2, 87, 6.5),
-  createData(7, "Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData(8, "Jelly Bean", 375, 0.0, 94, 0.0),
-  createData(9, "KitKat", 518, 26.0, 65, 7.0),
-  createData(10, "Lollipop", 392, 0.2, 98, 0.0),
-  createData(11, "Marshmallow", 318, 0, 81, 2.0),
-  createData(12, "Nougat", 360, 19.0, 9, 37.0),
-  createData(13, "Oreo", 437, 18.0, 63, 4.0),
+  createData(1, "Ravi", 305, "Oct 2024", "Not Submitted"),
+  createData(2, "Bansal", 452, "Oct 2024", "Not Submitted"),
+  createData(3, "Sliet Restaurent", 262, "Oct 2024", "Not Submitted"),
+  createData(4, "CP", 159, "Oct 2024", "Not Submitted"),
+  createData(5, "Shubham", 356, "Oct 2024", "Not Submitted"),
+  createData(6, "Satyam", 408, "Oct 2024", "Not Submitted"),
+  createData(7, "Ravi", 237, "Oct 2024", "Not Submitted"),
+  createData(2, "Bansal", 452, "Oct 2024", "Not Submitted"),
+  createData(3, "Sliet Restaurent", 262, "Oct 2024", "Not Submitted"),
+  createData(4, "CP", 159, "Oct 2024", "Not Submitted"),
+  createData(5, "Shubham", 356, "Oct 2024", "Not Submitted"),
+  createData(6, "Satyam", 408, "Oct 2024", "Not Submitted"),
+  createData(2, "Bansal", 452, "Oct 2024", "Not Submitted"),
+  createData(3, "Sliet Restaurent", 262, "Oct 2024", "Not Submitted"),
+  createData(4, "CP", 159, "Oct 2024", "Not Submitted"),
+  createData(5, "Shubham", 356, "Oct 2024", "Not Submitted"),
+  createData(6, "Satyam", 408, "Oct 2024", "Not Submitted"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -131,16 +134,16 @@ function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
-            sortDirection={orderBy === headCell.id ? order : false}
+            sortDirection={orderBy === headCell.label ? order : false}
             sx={{ color: "white", fontWeight: 800, fontSize: 20 }}
           >
             <TableSortLabel
-              active={orderBy === headCell.id}
+              active={orderBy === headCell.id && headCell.id === "amount"}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
-              {orderBy === headCell.id ? (
+              {orderBy === headCell.id && headCell.id === "amount" ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
@@ -182,7 +185,6 @@ function EnhancedTableToolbar(props) {
           color: "white",
           fontWeight: 600,
         },
-
       ]}
     >
       {numSelected > 0 ? (
@@ -196,23 +198,27 @@ function EnhancedTableToolbar(props) {
         </Typography>
       ) : (
         <Typography
-          sx={{ flex: "1 1 100%", color: "white",fontWeight: 800, fontSize: 25 }}
+          sx={{
+            flex: "1 1 100%",
+            color: "white",
+            fontWeight: 800,
+            fontSize: 25,
+          }}
           variant="h6"
           id="tableTitle"
           component="div"
-
         >
           Expenses
         </Typography>
       )}
       {numSelected > 0 ? (
-        <Tooltip title="Delete">
+        <Tooltip title="Delete" sx={{ color: "white" }}>
           <IconButton>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Filter list">
+        <Tooltip title="Filter list" sx={{ color: "white" }}>
           <IconButton>
             <FilterListIcon />
           </IconButton>
@@ -301,7 +307,7 @@ export default function EnhancedTable() {
           mb: 2,
           backgroundColor: "black",
           border: "1px solid white",
-          borderRadius:"10px"
+          borderRadius: "10px",
         }}
       >
         <EnhancedTableToolbar numSelected={selected.length} />
@@ -342,7 +348,7 @@ export default function EnhancedTable() {
                         inputProps={{
                           "aria-labelledby": labelId,
                         }}
-                        sx={{color:"white" }}
+                        sx={{ color: "white" }}
                       />
                     </TableCell>
                     <TableCell
@@ -352,19 +358,20 @@ export default function EnhancedTable() {
                       padding="none"
                       sx={{ color: "white" }}
                     >
-                      {row.name}
+                      {row.details}
+                    </TableCell>
+
+                    <TableCell align="right" sx={{ color: "white" }}>
+                      {row.paid_to}
                     </TableCell>
                     <TableCell align="right" sx={{ color: "white" }}>
-                      {row.calories}
+                      {row.amount}
                     </TableCell>
                     <TableCell align="right" sx={{ color: "white" }}>
-                      {row.fat}
+                      {row.report}
                     </TableCell>
                     <TableCell align="right" sx={{ color: "white" }}>
-                      {row.carbs}
-                    </TableCell>
-                    <TableCell align="right" sx={{ color: "white" }}>
-                      {row.protein}
+                      {row.status}
                     </TableCell>
                   </TableRow>
                 );
@@ -375,7 +382,7 @@ export default function EnhancedTable() {
                     height: (dense ? 33 : 53) * emptyRows,
                   }}
                 >
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={6} sx={{ color: "white" }} />
                 </TableRow>
               )}
             </TableBody>
