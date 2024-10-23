@@ -14,12 +14,11 @@ import {
 
 import AppTheme from "../../theme/AppTheme";
 import { CssBaseline } from "@mui/material";
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import ReportIcon from '@mui/icons-material/Description';
-import FlightIcon from '@mui/icons-material/Flight';
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import ReportIcon from "@mui/icons-material/Description";
+import FlightIcon from "@mui/icons-material/Flight";
 import { useNavigate } from "react-router-dom";
-
 
 // Register necessary components for Chart.js
 ChartJS.register(
@@ -33,40 +32,39 @@ ChartJS.register(
 );
 
 const quickAccessCardStyle = {
-  backgroundColor: '#1a1a1a',
-  borderRadius: '10px',
-  textAlign: 'center',
-  boxShadow: '0 3px 5px rgba(0,0,0,0.3)',
-  padding: '1rem',
+  backgroundColor: "#1a1a1a",
+  borderRadius: "10px",
+  textAlign: "center",
+  boxShadow: "0 3px 5px rgba(0,0,0,0.3)",
+  padding: "1rem",
 };
 
 const cardContentStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#fff',
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  color: "#fff",
 };
 
 const iconButtonStyle = {
-  backgroundColor: '#2a2a2a',
-  borderRadius: '50%',
-  padding: '10px',
-  marginBottom: '10px',
+  backgroundColor: "#2a2a2a",
+  borderRadius: "50%",
+  padding: "10px",
+  marginBottom: "10px",
 };
 
 const textStyle = {
-  fontWeight: '500',
-  color: '#fff',
-  fontSize: '16px',
+  fontWeight: "600",
+  color: "#fff",
+  fontSize: "16px",
 };
 
 const Dashboard = (props) => {
-
   const navigate = useNavigate();
 
   function openNewExpenses() {
-      navigate("/newexpense")
+    navigate("/newexpense");
   }
 
   // Data for the Line chart
@@ -115,6 +113,7 @@ const Dashboard = (props) => {
                   backgroundColor: "#262626",
                   color: "#fff",
                   border: "1px solid grey",
+                  height: "225px",
                 }}
               >
                 <Card
@@ -124,24 +123,31 @@ const Dashboard = (props) => {
                     borderBottom: "1px solid grey",
                   }}
                 >
-                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                  <Typography variant="h4" sx={{ margin: "7px 0px 5px 10px" }}>
                     Pending Tasks
                   </Typography>
                 </Card>
                 <CardContent>
-                  <Typography>Pending Approvals: 5</Typography>
-                  <Typography>New Trips Registered: 1</Typography>
-                  <Typography>Unreported Expenses: 4</Typography>
+                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                    Pending Approvals: 5
+                  </Typography>
+                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                    New Trips Registered: 1
+                  </Typography>
+                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                    Unreported Expenses: 4
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
 
-            <Grid size={5}>
+            <Grid size={6}>
               <Card
                 sx={{
                   backgroundColor: "#262626",
                   color: "#fff",
                   border: "1px solid grey",
+                  height: "225px",
                 }}
               >
                 <Card
@@ -151,13 +157,17 @@ const Dashboard = (props) => {
                     borderBottom: "1px solid grey",
                   }}
                 >
-                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                  <Typography variant="h4" sx={{ margin: "7px 0px 5px 10px" }}>
                     Recent Expenses
                   </Typography>
                 </Card>
                 <CardContent>
-                  <Typography>Party at Sliet Restaurent: ₹ 150.00</Typography>
-                  <Typography>Travel: ₹ 75.50</Typography>
+                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                    Party at Sliet Restaurent: ₹ 150.00
+                  </Typography>
+                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                    Travel: ₹ 75.50
+                  </Typography>
                 </CardContent>
               </Card>
             </Grid>
@@ -178,31 +188,28 @@ const Dashboard = (props) => {
                     borderBottom: "1px solid grey",
                   }}
                 >
-                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                  <Typography variant="h4" sx={{ margin: "7px 0px 5px 10px" }}>
                     Quick Access
                   </Typography>
                 </Card>
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", justifyContent:"center", alignItems:"center" }}>
                   <Box sx={{ padding: 2 }}>
-                    <Typography
-                      variant="h6"
-                      component="h3"
-                      sx={{ color: "#fff", marginBottom: 2 }}
-                    >
-                      Quick Access
-                    </Typography>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={20}>
                       {/* First Item */}
-                      <Grid item xs={12} sm={3}>
+                      <Grid item xs={12} sm={4}>
                         <Card sx={quickAccessCardStyle}>
                           <CardContent sx={cardContentStyle}>
-                            <IconButton sx={iconButtonStyle} size="large" onClick={openNewExpenses}>
+                            <IconButton
+                              sx={iconButtonStyle}
+                              size="large"
+                              onClick={openNewExpenses}
+                            >
                               <CreditCardIcon
                                 fontSize="large"
                                 sx={{ color: "#e91e63" }}
                               />
                             </IconButton>
-                            <Typography sx={textStyle} >
+                            <Typography sx={textStyle}>
                               + New expense
                             </Typography>
                           </CardContent>
@@ -278,7 +285,7 @@ const Dashboard = (props) => {
                     borderBottom: "1px solid grey",
                   }}
                 >
-                  <Typography variant="h6" sx={{ margin: "7px 0px 5px 10px" }}>
+                  <Typography variant="h4" sx={{ margin: "7px 0px 5px 10px" }}>
                     Monthly Report
                   </Typography>
                 </Card>

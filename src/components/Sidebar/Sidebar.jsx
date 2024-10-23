@@ -7,13 +7,7 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-import {
-  FaHome,
-  FaWallet,
-  FaPlane,
-  FaCog,
-  FaPhone,
-} from "react-icons/fa";
+import { FaHome, FaWallet, FaPlane, FaCog, FaPhone } from "react-icons/fa";
 import { Link } from "react-router-dom"; // Import Link for navigation
 
 const drawerWidth = 240;
@@ -42,7 +36,7 @@ const Sidebar = () => {
         }}
       >
         <Avatar sx={{ width: 56, height: 56 }} src="/profile.jpg" />
-        <Typography variant="h6" sx={{ marginTop: "10px" }}>
+        <Typography variant="h6" sx={{ marginTop: "10px", fontWeight:600 }}>
           Naman Kulshresth
         </Typography>
       </div>
@@ -57,14 +51,20 @@ const Sidebar = () => {
           <ListItem
             button
             key={text}
-            style={{ height: "80px", padding: "20px", border: "grey" }}
+            sx={{
+              height: "100px",
+              padding: "20px",
+              "&.active .MuiListItemText-root": { textDecoration: "underline" },
+            }}
             component={Link}
             to={path} // Link to the respective page
           >
-            <ListItemIcon sx={{ color: "#8be9fd" }}>{icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: "#8be9fd", fontSize: "20px" }}>
+              {icon}
+            </ListItemIcon>
             <ListItemText
               primary={text}
-              sx={{ fontSize: "40px", fontWeight: 700 }}
+              primaryTypographyProps={{ fontSize: "20px", fontWeight: 700 }}
             />
           </ListItem>
         ))}

@@ -96,7 +96,7 @@ const ExpenseForm = (props) => {
           </Grid>
 
           {/* Merchant Field */}
-          <Grid size={12}>
+          {/* <Grid size={12}>
             <TextField
               fullWidth
               label="Merchant"
@@ -111,7 +111,7 @@ const ExpenseForm = (props) => {
                 label: { color: "#888" },
               }}
             />
-          </Grid>
+          </Grid> */}
 
           {/* Date Field */}
           <Grid size={6}>
